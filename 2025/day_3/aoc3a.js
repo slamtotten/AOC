@@ -1,9 +1,8 @@
 console.time()
 import { readFileSync } from 'node:fs';
 
-//var input = readFileSync("./test.txt", "utf8");
-var input = readFileSync("./input.txt", "utf8");
-const banks = input.split("\r\n")
+//var banks = readFileSync("./test.txt", "utf8").split("\n");
+var banks = readFileSync("./input.txt", "utf8").split("\n");
 
 let joltageTotal = 0
 
@@ -32,7 +31,7 @@ function srch(item){
         }
     }
 
-    let joltage = Number(item[int1].concat("", item[int2]))
+    let joltage = (item[int1] += item[int2])
     console.log(joltage)
     joltageTotal += joltage
 }

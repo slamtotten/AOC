@@ -1,8 +1,8 @@
 console.time('time')
 import { readFileSync } from 'node:fs';
 
-//var input = readFileSync("./test.txt", "utf8");
-var map = readFileSync("./input.txt", "utf8").split("\r\n").map(r=>r.split(""))
+//var map = readFileSync("./test.txt", "utf8").split("\n").map(r=>r.split(""));
+var map = readFileSync("./input.txt", "utf8").split("\n").map(r=>r.split(""))
 
 //Part A
 

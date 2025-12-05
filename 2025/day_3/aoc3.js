@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs';
 
 //var input = readFileSync("./test.txt", "utf8");
 var input = readFileSync("./input.txt", "utf8");
-const banks = input.split("\r\n")
+var banks = input.split("\n")
 
 
 

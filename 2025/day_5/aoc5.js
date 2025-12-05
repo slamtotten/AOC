@@ -1,9 +1,9 @@
 console.time()
 import { readFileSync } from "node:fs";
-//var input = readFileSync("test.txt","utf8").split("\r\n\r\n")
-var input = readFileSync("input.txt","utf8").split("\r\n\r\n")
-var ranges = input[0].split("\r\n").map(r => r.split("-").map(r=>+r))
-var skus = input[1].split("\r\n").map(r => +r)
+//var input = readFileSync("test.txt","utf8").split("\n\n")
+var input = readFileSync("input.txt","utf8").split("\n\n")
+var ranges = input[0].split("\n").map(r => r.split("-").map(r=>+r))
+var skus = input[1].split("\n").map(r => +r)
 
 // Part A
 

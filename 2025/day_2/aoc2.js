@@ -1,24 +1,21 @@
 console.time('time')
 import { readFileSync } from 'node:fs';
-import { arrayBuffer } from 'node:stream/consumers';
 
-//var input = readFileSync("./test.txt", "utf8");
-var input = readFileSync("./input.txt", "utf8");
-var ranges = input.split(",")
+//var ranges = readFileSync("./test.txt", "utf8").split(",");
+var ranges = readFileSync("./input.txt", "utf8").split(",");
+
 console.log(ranges)
 
 let totalInvalid = 0;
 
 ranges.forEach(splitrange)
 
-
-
 function splitrange(item) {
     let start = item.split("-")[0];
     let end = item.split("-")[1];
 
-    start = Number(start)
-    end = Number(end)
+    start = +start
+    end = +end
     console.log(start,end)
 
     for (let num = start; num <= end; num++){
@@ -31,7 +28,7 @@ function splitrange(item) {
             let str2 = id.substring(split);
             if (str1 == str2){
                 console.log(id)
-                totalInvalid += Number(id)
+                totalInvalid += num
                 continue
             }
         } 
@@ -42,7 +39,7 @@ function splitrange(item) {
             let str3 = id.substring((split*2))
             if (str1 == str2 && str2 == str3){
                 console.log(id)
-                totalInvalid += Number(id)
+                totalInvalid += num
                 
             }
         }
@@ -55,14 +52,14 @@ function splitrange(item) {
             let str5 = id.substring((split*4))
             if (str1 == str2 && str2 == str3 && str3 == str4 && str4 == str5){
                 console.log(id)
-                totalInvalid += Number(id)
+                totalInvalid += num
                 
             }
         }
         if (id.length%7 == 0){
             if (id[0] == id[1] && id[1] == id[2] && id[2] == id[3] && id[3] == id[4] && id[4] == id[5] && id[5] == id[6]){
                 console.log(id)
-                totalInvalid += Number(id)
+                totalInvalid += num
                 
             }
         }
