@@ -64,7 +64,6 @@ function mult(mult, int){
 function comb(total, int){
     return total + int
 }
-
 function turnSheet(arr){
     let turnedArray = []
     for(let x = 0; x<arr[0].length; x++){
