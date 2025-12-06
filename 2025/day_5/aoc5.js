@@ -1,5 +1,5 @@
 console.time()
-import { readFileSync } from "node:fs";
+import { readFileSync } from "fs";
 //var input = readFileSync("test.txt","utf8").split("\n\n")
 var input = readFileSync("input.txt","utf8").split("\n\n")
 var ranges = input[0].split("\n").map(r => r.split("-").map(r=>+r))
