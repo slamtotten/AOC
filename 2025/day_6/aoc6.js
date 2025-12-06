@@ -30,7 +30,7 @@ var ops = sheet.pop()
 var eqLngth = ops.join("").split(/\S/).map(r => r.length)
 
 eqLngth.shift()
-eqLngth[999]++
+eqLngth[eqLngth.length-1]++
 ops = ops.filter(r=>/\S/.test(r))
 sheet = turnSheet(sheet).map(r => r.reduce(comb).trim()).filter(r => /\S/.test(r))
 
