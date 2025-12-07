@@ -34,11 +34,3 @@ function cnd1(str){
 function cnd2(str){
     if(str.search(/([a-z])([a-z])\1/) != -1){return true}else{return false}
 }
-/*regex Reference
-
-vowels = /[aeiou]/
-double letters = /([a-z])\1/
-specific pairs = /(ab|cd|pq|xy)/
-
-
-*/
