@@ -5,12 +5,10 @@ var input = readFileSync("input.txt","utf8").split("\n").map(r=>r.split(""))
 var totalSplits = 0
 
 var beam = []
-let chartwidth = input[0].length
-while(chartwidth>0){
-    beam.push(0)
-    chartwidth--
+for(let x =0; x <input[0].length; x++){
+    if(input[0][x] == "S"){beam.push(1)}
+    else {beam.push(0)}
 }
-beam[input[0].indexOf("S")] = 1
 
 input.forEach(scnLine)
 
