@@ -1,4 +1,6 @@
-# Dependencey Directories
 **/node_modules/
 package-lock.json
 package.json
+**/input.txt
+**/test.txt
+input.js
