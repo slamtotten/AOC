@@ -26,8 +26,9 @@ do{ let sl = circuits.length
     var removed = sl-el
 }while (removed>0)
 
+//Find largest 3 and multiply lengths
 circuits = circuits.sort((a,b)=> b.length - a.length)
-//console.log((circuits[0].length*circuits[1].length*circuits[2].length))
+console.log("Part A: ",(circuits[0].length*circuits[1].length*circuits[2].length))
 
 function dist(x1,y1,z1,x2,y2,z2){
     return Math.sqrt((x2-x1)**2 + (y2-y1)**2 + (z2-z1)**2)
@@ -63,10 +64,9 @@ for (var x = 0;;x++){
     let id1 = jblist.findIndex((r => r.includes(a)))
     let id2 = jblist.findIndex((r => r.includes(b)))
     if (id1 == id2){x++; continue}
-    console.log(jblist[id1],jblist[id2])
     jblist[id1].push(...jblist[id2])
     jblist.splice(id2,1)
     if (jblist.length==1){break}
 }  
-console.log((input[connections[x][0]][0]*input[connections[x][1]][0]))
-
+//Multiply X coordinates of final connection nodes
+console.log("Part B: ",(input[connections[x][0]][0]*input[connections[x][1]][0]))
