@@ -18,5 +18,3 @@ for (let x = 0; x < input.length; x++){
     else {floor--}
     if (floor < 0){console.log(x+1); break}
     }
-
-console.timeEnd()
