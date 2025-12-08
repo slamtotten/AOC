@@ -1,5 +1,5 @@
-import { readFileSync } from "fs"
-var input = readFileSync("input.txt","utf8").split("\n")
+import puz from "../../input.js"
+var input = puz.split("\n")
 
 //Part A
 var ns = 0

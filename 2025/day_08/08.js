@@ -1,6 +1,5 @@
-import { readFileSync } from "fs"
-var input = readFileSync("input.txt","utf8").split("\n").map(r=>r.split(",").map(r=>+r))
-//var input = readFileSync("test.txt","utf8").split("\n").map(r=>r.split(",").map(r=>+r))
+import puz from "../../input.js"
+var input = puz.split("\n").map(r=>r.split(",").map(r=>+r))
 
 //Part A
 //Calculate and log distances between all points

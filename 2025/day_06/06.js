@@ -1,10 +1,8 @@
-import { readFileSync } from "fs";
+import puz from "../../input.js"
 
 //Part A
 
-//var sheet = readFileSync("test.txt","utf8").split("\n").map(r => r.split(" ").filter(r=>r !==""))
-var sheet = readFileSync("input.txt","utf8").split("\n").map(r => r.split(" ").filter(r=>r !==""))
-
+var sheet = puz.split("\n").map(r => r.split(" ").filter(r=>r !==""))
 var ops = sheet.pop()
 var sheet = turnSheet(sheet)
 
@@ -23,8 +21,7 @@ console.log("Part A: ",total)
 
 //Part B
 
-//var sheet = readFileSync("test.txt","utf8").split("\n").map(r => r.split(""))
-var sheet = readFileSync("input.txt","utf8").split("\n").map(r => r.split(""))
+var sheet = puz.split("\n").map(r => r.split(""))
 
 var ops = sheet.pop()
 var eqLngth = ops.join("").split(/\s(?=\S)/).map(r => r.length)

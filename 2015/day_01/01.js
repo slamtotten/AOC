@@ -1,8 +1,6 @@
 console.time()
-import { readFileSync } from 'node:fs';
-
-//var input = readFileSync("./test.txt", "utf8");
-var input = readFileSync("./input.txt", "utf8");
+import puz from "../../input.js"
+var input = puz
 
 /*  part 1
 var up ="("

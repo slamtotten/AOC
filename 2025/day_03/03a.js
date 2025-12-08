@@ -1,8 +1,6 @@
 console.time()
-import { readFileSync } from 'node:fs';
-
-//var banks = readFileSync("./test.txt", "utf8").split("\n");
-var banks = readFileSync("./input.txt", "utf8").split("\n");
+import puz from "../../input.js"
+var banks = puz.split("\n")
 
 let joltageTotal = 0
 
@@ -37,10 +35,3 @@ function srch(item){
 }
 
 console.timeEnd()
-
-
-//    for (let y = 9; y >=0; y--){
-//        let int2 = item.search(y)
-//        if (int2>=0 && int2>int1){continue}
-//    }
-//    console.log(int1,int2)

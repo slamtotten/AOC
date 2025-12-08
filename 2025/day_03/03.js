@@ -1,9 +1,5 @@
-console.time('time')
-import { readFileSync } from 'node:fs';
-
-//var input = readFileSync("./test.txt", "utf8");
-var input = readFileSync("./input.txt", "utf8");
-var banks = input.split("\n")
+import puz from "../../input.js"
+var banks = puz.split("\n")
 
 let joltageTotal = 0
 banks.forEach(srch)

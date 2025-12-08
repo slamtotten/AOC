@@ -1,5 +1,5 @@
-import { readFileSync } from "fs";
-var sequence = readFileSync("input.txt","utf8").split("\n")       
+import puz from "../../input.js";
+var sequence = puz.split("\n")       
 
 let dialPosition = 50;
 let zeroCount = 0;

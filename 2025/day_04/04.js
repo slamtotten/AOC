@@ -1,8 +1,5 @@
-console.time('time')
-import { readFileSync } from 'node:fs';
-
-//var map = readFileSync("./test.txt", "utf8").split("\n").map(r=>r.split(""));
-var map = readFileSync("./input.txt", "utf8").split("\n").map(r=>r.split(""))
+import puz from "../../input.js"
+var map = puz.split("\n").map(r=>r.split(""))
 
 //Part A
 

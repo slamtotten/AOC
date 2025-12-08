@@ -1,7 +1,6 @@
 console.time()
-import { readFileSync } from "fs";
-//var input = readFileSync("test.txt","utf8").split("\n\n")
-var input = readFileSync("input.txt","utf8").split("\n\n")
+import puz from "../../input.js"
+var input = puz.split("\n\n")
 var ranges = input[0].split("\n").map(r => r.split("-").map(r=>+r))
 var skus = input[1].split("\n").map(r => +r)
 

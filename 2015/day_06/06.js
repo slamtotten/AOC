@@ -1,7 +1,5 @@
-import { readFileSync } from "fs";
-
-var input = readFileSync("input.txt","utf8").split("\n").map(r => r.split(" "))
-//var input = readFileSync("test.txt","utf8").split("\n").map(r => r.split(" "))
+import puz from "../../input.js"
+var input = puz.split("\n").map(r => r.split(" "))
 
 //input parsing
 var ops = []

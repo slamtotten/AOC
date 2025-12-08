@@ -1,5 +1,5 @@
-import { readFileSync } from "fs";
-var sequence = readFileSync("input.txt","utf8")
+import puz from "../../input.js"
+var sequence = puz
 
 //Part A
 var loc = [0,0]
