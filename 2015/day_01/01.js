@@ -11,7 +11,7 @@ for(let x = 0; x<input.length; x++){
 }
 console.log(count);
 
-// part 2
+// Part B
 let floor = 0
 for (let x = 0; x < input.length; x++){
     if (input[x]==up){floor++}
