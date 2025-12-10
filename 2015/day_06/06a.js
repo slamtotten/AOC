@@ -12,9 +12,7 @@ for(var line of input){
     sc.push(line.shift().split(","))
     ec.push(line.shift().split(","))
 }
-console.table(ops)
-console.table(sc)
-console.table(ec)
+
 // Create light grid
 let gridsize = 1000
 var grid = []

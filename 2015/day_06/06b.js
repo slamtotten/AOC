@@ -12,9 +12,7 @@ for(var line of input){
     sc.push(line.shift().split(","))
     ec.push(line.shift().split(","))
 }
-console.table(ops)
-console.table(sc)
-console.table(ec)
+
 // Create light grid
 let gridsize = 1000
 var grid = []
@@ -47,7 +45,6 @@ function count(arr){
     var lights = 0
     for(var line of arr){
         for (let x = 0; x <line.length; x++){
-
             lights += line[x]
         }
     }
