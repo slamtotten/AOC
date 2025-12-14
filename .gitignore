@@ -3,5 +3,6 @@ package-lock.json
 package.json
 **/input.txt
 **/test.txt
+**/testb.txt
 input.js
 2025/day_09/*
