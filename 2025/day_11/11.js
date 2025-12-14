@@ -23,30 +23,25 @@ console.log(paths)
 
 //Part B
 
-const graph = new Map()
-for(let i = 0; i <input.length;i++){
-    graph.set(input[i], output[i])
-}
-
 const visited = new Map()
 
-let pathsA = chkpath(graph, "svr", "fft", visited)
+let pathsA = chkpath("svr", "fft")
 visited.clear()
 
-let pathsB = chkpath(graph, "fft", "dac", visited)
+let pathsB = chkpath("fft", "dac")
 visited.clear()
 
-let pathsC = chkpath(graph, "dac", "out", visited)
+let pathsC = chkpath("dac", "out")
 
 console.log(pathsA*pathsB*pathsC)
 
-function chkpath(graph, start, end, visited){
+function chkpath(start, end){
     if (start == end){return 1}
     else if (visited.has(start) == true){return visited.get(start).sol}
     else if(start == "out"){return false}
     else {
         let total = 0
-        graph.get(start).forEach(str=> total += chkpath(graph, str, end, visited))
+        output[input.indexOf(start)].forEach(str => total += chkpath(str, end))
         visited.set(start,{sol: total})
         return total}
 }
