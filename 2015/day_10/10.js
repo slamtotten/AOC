@@ -1,8 +1,8 @@
 import input from "../../input.js"
 
-console.log(recurse(input, 0))
+console.log(seesay(input, 0))
 
-function recurse(start, steps){
+function seesay(start, steps){
     if (steps == 50){return start.length}
     else{
         let ans = ""
@@ -15,6 +15,6 @@ function recurse(start, steps){
                 totdigit = 1
             }
         }
-        return recurse(ans, steps+1)
+        return seesay(ans, steps+1)
     }
 }
