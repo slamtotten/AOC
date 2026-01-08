@@ -1,5 +1,4 @@
-import puz from "../../input.js"
-var sequence = puz
+import sequence from "../../input.js"
 
 //Part A
 var loc = [0,0]

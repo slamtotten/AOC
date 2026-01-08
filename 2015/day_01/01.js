@@ -1,20 +1,16 @@
 import puz from "../../input.js"
-var input = puz
 
 // Part A
-var up ="("
-var dn =")"
-
 let count = 0
-for(let x = 0; x<input.length; x++){
-    if (input[x]==up){count++}else {count--}
+for(let x = 0; x<puz.length; x++){
+    if (puz[x]=="("){count++}else {count--}
 }
 console.log(count);
 
 // Part B
 let floor = 0
-for (let x = 0; x < input.length; x++){
-    if (input[x]==up){floor++}
+for (let x = 0; x < puz.length; x++){
+    if (puz[x]=="("){floor++}
     else {floor--}
     if (floor < 0){console.log(x+1); break}
     }

@@ -1,4 +1,3 @@
-console.time()
 import pkg from "md5"; const md5 = pkg
 
 let input = "yzbqklnj"
@@ -18,4 +17,3 @@ for(let x = 0; ;x++){
         break
     }
 }
-console.timeEnd()
