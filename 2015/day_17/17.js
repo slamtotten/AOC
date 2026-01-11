@@ -17,13 +17,14 @@ console.log("Part B: ",minConCombos.length,"different combinations using minimum
 function addCon(arr, vol, used){
     for(let con of arr){
         let remcon = arr.filter(r=>r!=con)
+        let newused = used.concat([con.con])
         let cvol = vol + con.vol
         if (cvol == 150){
-            let combo = used.concat([con.con]).sort((a,b)=>a-b).toString()
+            let combo = newused.sort((a,b)=>a-b).toString()
             if(combos.includes(combo) == false){combos.push(combo)}
             continue
         }
         if (cvol >150){continue}
-        if (remcon.length > 0){addCon(remcon, vol+con.vol, used.concat([con.con]))}
+        if (remcon.length > 0){addCon(remcon, cvol, newused)}
     }
 }
