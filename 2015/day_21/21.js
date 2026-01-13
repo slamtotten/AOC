@@ -39,23 +39,9 @@ let boss = new Char(104, 8, 1)
 let hero = new Char(100,0,0)
 
 let [weapons,armor,rings] = [[],[],[]]
-for (let line of storeW){
-    let x = line.match(/(?<name>\w+)\s+(?<cost>\d+)\s+(?<dmg>\d+)\s+(?<arm>\d+)/).groups
-    let wep = new Item(x.name, +x.cost, +x.dmg, +x.arm)
-    weapons.push(wep)
-}
-
-for (let line of storeA){
-    let x = line.match(/(?<name>\w+)\s+(?<cost>\d+)\s+(?<dmg>\d+)\s+(?<arm>\d+)/).groups
-    let arm = new Item(x.name, +x.cost, +x.dmg, +x.arm)
-    armor.push(arm)
-}
-
-for (let line of storeR){
-    let x = line.match(/(?<name>\w+ \+\d+)\s+(?<cost>\d+)\s+(?<dmg>\d+)\s+(?<arm>\d+)/).groups
-    let ring = new Item(x.name, +x.cost, +x.dmg, +x.arm)
-    rings.push(ring)
-}
+stockStore(storeW, weapons)
+stockStore(storeA, armor)
+stockStore(storeR, rings)
 
 let [wins,losses] = [[],[]]
 equipCycle()
@@ -66,6 +52,14 @@ let el = losses.sort((a,b)=> b.cost-a.cost).shift()
 console.log(`Cheapest win: ${cw.cost}g using ${cw.gear.join(', ')}`)
 console.log(`Most expensive loss: ${el.cost}g using ${el.gear.join(', ')}`)
 
+function stockStore(srcArr, trgtArr){
+    for (let line of srcArr){
+        let x = line.match(/(?<name>\w+(?: \+\d+)?)\s+(?<cost>\d+)\s+(?<dmg>\d+)\s+(?<arm>\d+)/).groups
+        let item = new Item(x.name, +x.cost, +x.dmg, +x.arm)
+        trgtArr.push(item)
+    }
+}
+
 function equipCycle(){
     for(let w = 0; w < weapons.length; w++){
         hero.equip(weapons[w])
@@ -73,6 +67,7 @@ function equipCycle(){
         hero.dequip(weapons[w])
     }
 }
+
 function arm(){
     for(let a = 0; a <= armor.length ; a++){
         if(a != armor.length){hero.equip(armor[a])}
