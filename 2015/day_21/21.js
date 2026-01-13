@@ -1,8 +1,8 @@
 import puz from '../../input.js'
 let store = puz.split('\n\n')
-let storeW = store[0].split('\n').slice(1)
-let storeA = store[1].split('\n').slice(1)
-let storeR = store[2].split('\n').slice(1)
+let wepSheet = store[0].split('\n').slice(1)
+let armSheet = store[1].split('\n').slice(1)
+let ringSheet = store[2].split('\n').slice(1)
 
 class Item{
     constructor(name, cost, dmg, arm){
@@ -39,9 +39,9 @@ let boss = new Char(104, 8, 1)
 let hero = new Char(100,0,0)
 
 let [weapons,armor,rings] = [[],[],[]]
-stockStore(storeW, weapons)
-stockStore(storeA, armor)
-stockStore(storeR, rings)
+stockStore(wepSheet, weapons)
+stockStore(armSheet, armor)
+stockStore(ringSheet, rings)
 
 let [wins,losses] = [[],[]]
 equipCycle()
