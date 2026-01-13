@@ -1,17 +1,15 @@
-import {readFileSync} from 'fs'
-let bs = readFileSync('boss.txt','utf-8').match(/Hit Points: (?<hp>\d+)\s+Damage: (?<dmg>\d+)\s+Armor: (?<arm>\d+)/).groups
-let store = readFileSync('store.txt','utf-8').split('\n\n')
-let storeW = store[0].split('\n')
-let storeA = store[1].split('\n')
-let storeR = store[2].split('\n')
+import puz from '../../input.js'
+let store = puz.split('\n\n')
+let storeW = store[0].split('\n').slice(1)
+let storeA = store[1].split('\n').slice(1)
+let storeR = store[2].split('\n').slice(1)
 
 class Item{
     constructor(name, cost, dmg, arm){
         this.name = name
         this.cost = cost
         this.dmg = dmg
-        this.arm = arm
-        
+        this.arm = arm     
     }
 }
 
@@ -37,28 +35,25 @@ class Char{
     }
 }
 
-let boss = new Char(+bs.hp, +bs.dmg, +bs.arm)
+let boss = new Char(104, 8, 1)
 let hero = new Char(100,0,0)
 
 let [weapons,armor,rings] = [[],[],[]]
 for (let line of storeW){
-    let x = line.match(/(?<name>\w+(?: \+\d+)?)\s+(?<cost>\d+)\s+(?<dmg>\d+)\s+(?<arm>\d+)/)
-    if (x == null){continue}
-    let wep = new Item(x.groups.name, +x.groups.cost, +x.groups.dmg, +x.groups.arm)
+    let x = line.match(/(?<name>\w+)\s+(?<cost>\d+)\s+(?<dmg>\d+)\s+(?<arm>\d+)/).groups
+    let wep = new Item(x.name, +x.cost, +x.dmg, +x.arm)
     weapons.push(wep)
 }
 
 for (let line of storeA){
-    let x = line.match(/(?<name>\w+(?: \+\d+)?)\s+(?<cost>\d+)\s+(?<dmg>\d+)\s+(?<arm>\d+)/)
-    if (x == null){continue}
-    let arm = new Item(x.groups.name, +x.groups.cost, +x.groups.dmg, +x.groups.arm)
+    let x = line.match(/(?<name>\w+)\s+(?<cost>\d+)\s+(?<dmg>\d+)\s+(?<arm>\d+)/).groups
+    let arm = new Item(x.name, +x.cost, +x.dmg, +x.arm)
     armor.push(arm)
 }
 
 for (let line of storeR){
-    let x = line.match(/(?<name>\w+(?: \+\d+)?)\s+(?<cost>\d+)\s+(?<dmg>\d+)\s+(?<arm>\d+)/)
-    if (x == null){continue}
-    let ring = new Item(x.groups.name, +x.groups.cost, +x.groups.dmg, +x.groups.arm)
+    let x = line.match(/(?<name>\w+ \+\d+)\s+(?<cost>\d+)\s+(?<dmg>\d+)\s+(?<arm>\d+)/).groups
+    let ring = new Item(x.name, +x.cost, +x.dmg, +x.arm)
     rings.push(ring)
 }
 
@@ -70,15 +65,13 @@ for(let w = 0; w < weapons.length; w++){
         for(let r1 = 0; r1 <= rings.length; r1++){
             if(r1 != rings.length){hero.equip(rings[r1])}
             for(let r2 = 0; r2 <= rings.length; r2++){
-                if(r1 == r2){continue}
-                if(r2 != rings.length){hero.equip(rings[r2])}
-                let cost = 0
-                Object.values(hero.gear).forEach(r => cost += r.cost)
-                if(fight(hero, boss)=="win"){wins.push({gear:Object.keys(hero.gear),cost:cost})}
-                else{losses.push({gear:Object.keys(hero.gear),cost:cost})}
-                hero.hp = hero.maxhp
-                boss.hp = boss.maxhp
-                if(r2 != rings.length){hero.dequip(rings[r2])}
+                if(r1 != r2){
+                    if(r2 != rings.length){hero.equip(rings[r2])}
+                    let cost = findCost(hero.gear)
+                    if(fight(hero, boss)=="win"){wins.push({gear:Object.keys(hero.gear),cost:cost})}
+                    else{losses.push({gear:Object.keys(hero.gear),cost:cost})}
+                    if(r2 != rings.length){hero.dequip(rings[r2])}
+                }
             }
             if(r1 != rings.length){hero.dequip(rings[r1])}
         }
@@ -89,8 +82,8 @@ for(let w = 0; w < weapons.length; w++){
 
 let cw = wins.sort((a,b)=> a.cost-b.cost).shift()
 let el = losses.sort((a,b)=> b.cost-a.cost).shift()
-console.log(`Cheapest win: $${cw.cost} using ${cw.gear}`)
-console.log(`Most expensive loss: $${el.cost} using ${el.gear}`)
+console.log(`Cheapest win: ${cw.cost}g using ${cw.gear.join(', ')}`)
+console.log(`Most expensive loss: ${el.cost}g using ${el.gear.join(', ')}`)
 
 function fight(h,b){
     let bdmg = b.dmg - h.arm
@@ -101,8 +94,18 @@ function fight(h,b){
         b.hp -= hdmg
         if(b.hp>0){h.hp -= bdmg}
     }while(h.hp >0 && b.hp>0)
-    let result = ""
-    if(h.hp>0){result = "win"}
-    else{result = "lose"}
-    return result
+    if(h.hp>0){
+        hero.hp = hero.maxhp
+        boss.hp = boss.maxhp
+        return "win"}
+    else{
+        hero.hp = hero.maxhp
+        boss.hp = boss.maxhp
+        return "lose"}
+}
+
+function findCost(gear){
+    let cost = 0
+    Object.values(gear).forEach(r=> cost+=r.cost)
+    return cost
 }
