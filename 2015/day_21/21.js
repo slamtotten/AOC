@@ -21,7 +21,6 @@ class Char{
         this.maxhp = hp
         this.gear = {}
     }
-
     equip(item){
         this.gear[item.name] = item
         this.dmg += item.dmg
@@ -44,7 +43,12 @@ stockStore(armSheet, armor)
 stockStore(ringSheet, rings)
 
 let [wins,losses] = [[],[]]
-equipCycle()
+
+for(let c of eqCombos()){
+    eq(c)
+    collectStats()
+    dq(c)
+}
 
 let cw = wins.sort((a,b)=> a.cost-b.cost).shift()
 let el = losses.sort((a,b)=> b.cost-a.cost).shift()
@@ -60,44 +64,43 @@ function stockStore(srcArr, trgtArr){
     }
 }
 
-function equipCycle(){
-    for(let w = 0; w < weapons.length; w++){
-        hero.equip(weapons[w])
-        arm()
-        hero.dequip(weapons[w])
-    }
-}
-
-function arm(){
-    for(let a = 0; a <= armor.length ; a++){
-        if(a != armor.length){hero.equip(armor[a])}
-        ring1()
-        if(a != armor.length){hero.dequip(armor[a])}
-    }
-}
-
-function ring1(){
-    for(let r1 = 0; r1 <= rings.length; r1++){
-        if(r1 != rings.length){hero.equip(rings[r1])}
-        ring2(r1)
-        if(r1 != rings.length){hero.dequip(rings[r1])}
-    }
-}
-
-function ring2(r1){
-    for(let r2 = 0; r2 <= rings.length; r2++){
-        if(r2 != r1){
-            if(r2 != rings.length){hero.equip(rings[r2])}
-            collectStats()
-            if(r2 != rings.length){hero.dequip(rings[r2])}
+function *eqCombos(){
+    for(let w = 0;w<weapons.length;w++){
+        for(let a = 0; a<=armor.length;a++){
+            for(let r1 = 0; r1<=rings.length;r1++){
+                for(let r2 = 0; r2<=rings.length;r2++){
+                    if(r2 == r1){continue}
+                    yield [w,a,r1,r2]
+                }
+            }
         }
     }
+}
+
+function eq(arr){
+    hero.equip(weapons[arr[0]])
+    if(c[1] != armor.length){hero.equip(armor[arr[1]])}
+    if(c[2] != rings.length){hero.equip(rings[arr[2]])}
+    if(c[3] != rings.length){hero.equip(rings[arr[3]])}
+}
+
+function dq(arr){
+    hero.dequip(weapons[arr[0]])
+    if(c[1] != armor.length){hero.dequip(armor[arr[1]])}
+    if(c[2] != rings.length){hero.dequip(rings[arr[2]])}
+    if(c[3] != rings.length){hero.dequip(rings[arr[3]])}
 }
 
 function collectStats(){
     let cost = findCost(hero.gear)
     if(fight(hero, boss)=="win"){wins.push({gear:Object.keys(hero.gear),cost:cost})}
     else{losses.push({gear:Object.keys(hero.gear),cost:cost})}
+}
+
+function findCost(gear){
+    let cost = 0
+    Object.values(gear).forEach(r=> cost+=r.cost)
+    return cost
 }
 
 function fight(h,b){
@@ -117,10 +120,4 @@ function fight(h,b){
         hero.hp = hero.maxhp
         boss.hp = boss.maxhp
         return "lose"}
-}
-
-function findCost(gear){
-    let cost = 0
-    Object.values(gear).forEach(r=> cost+=r.cost)
-    return cost
 }
