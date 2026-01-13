@@ -64,31 +64,27 @@ function stockStore(srcArr, trgtArr){
     }
 }
 
-function *eqCombos(){
+function* eqCombos(){
     for(let w = 0;w<weapons.length;w++){
         for(let a = 0; a<=armor.length;a++){
             for(let r1 = 0; r1<=rings.length;r1++){
                 for(let r2 = 0; r2<=rings.length;r2++){
                     if(r2 == r1){continue}
                     yield [w,a,r1,r2]
-                }
-            }
-        }
-    }
-}
+}}}}}
 
 function eq(arr){
     hero.equip(weapons[arr[0]])
-    if(c[1] != armor.length){hero.equip(armor[arr[1]])}
-    if(c[2] != rings.length){hero.equip(rings[arr[2]])}
-    if(c[3] != rings.length){hero.equip(rings[arr[3]])}
+    if(arr[1] != armor.length){hero.equip(armor[arr[1]])}
+    if(arr[2] != rings.length){hero.equip(rings[arr[2]])}
+    if(arr[3] != rings.length){hero.equip(rings[arr[3]])}
 }
 
 function dq(arr){
     hero.dequip(weapons[arr[0]])
-    if(c[1] != armor.length){hero.dequip(armor[arr[1]])}
-    if(c[2] != rings.length){hero.dequip(rings[arr[2]])}
-    if(c[3] != rings.length){hero.dequip(rings[arr[3]])}
+    if(arr[1] != armor.length){hero.dequip(armor[arr[1]])}
+    if(arr[2] != rings.length){hero.dequip(rings[arr[2]])}
+    if(arr[3] != rings.length){hero.dequip(rings[arr[3]])}
 }
 
 function collectStats(){
