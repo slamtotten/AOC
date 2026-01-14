@@ -3,6 +3,7 @@ let input = puz.split('\n')
 
 let regs = {a: 0, b: 0}
 run(parseInsts(input))
+console.log(regs.b)
 
 function parseInsts(arr){
     let io = {}
@@ -23,6 +24,5 @@ function run(instructions){
         if (inst.func == "jie"){if (regs[inst.reg]%2 === 0){i += (inst.offset-1)}}
         if (inst.func == "jio"){if (regs[inst.reg] === 1){i += (inst.offset-1)}}
     }
-    console.log(regs["b"])
 }
 
