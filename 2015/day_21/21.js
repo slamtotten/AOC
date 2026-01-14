@@ -73,18 +73,18 @@ function* eqCombos(){
                     yield [w,a,r1,r2]
 }}}}}
 
-function eq(arr){
-    hero.equip(weapons[arr[0]])
-    if(arr[1] != armor.length){hero.equip(armor[arr[1]])}
-    if(arr[2] != rings.length){hero.equip(rings[arr[2]])}
-    if(arr[3] != rings.length){hero.equip(rings[arr[3]])}
+function eq([w,a,r1,r2]){
+    hero.equip(weapons[w])
+    if(a != armor.length){hero.equip(armor[a])}
+    if(r1 != rings.length){hero.equip(rings[r1])}
+    if(r2 != rings.length){hero.equip(rings[r2])}
 }
 
-function dq(arr){
-    hero.dequip(weapons[arr[0]])
-    if(arr[1] != armor.length){hero.dequip(armor[arr[1]])}
-    if(arr[2] != rings.length){hero.dequip(rings[arr[2]])}
-    if(arr[3] != rings.length){hero.dequip(rings[arr[3]])}
+function dq([w,a,r1,r2]){
+    hero.dequip(weapons[w])
+    if(a != armor.length){hero.dequip(armor[a])}
+    if(r1 != rings.length){hero.dequip(rings[r1])}
+    if(r2 != rings.length){hero.dequip(rings[r2])}
 }
 
 function collectStats(){
