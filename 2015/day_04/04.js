@@ -1,4 +1,4 @@
-import pkg from "md5"; const md5 = pkg
+import md5 from "md5"
 
 let input = "yzbqklnj"
 let digits = 5
