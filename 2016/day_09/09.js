@@ -1,21 +1,20 @@
 import seq from '../../input.js'
 
-let decompA = firstDecomp(seq)
-let decompB = fullDecomp(seq)
+let algSrch = /\((\d+)x(\d+)\)/
+console.log(`Part A: ${firstDecomp(seq)}`)
+console.log(`Part B: ${fullDecomp(seq)}`)
 
-console.log(`Part A: ${decompA}`)
-console.log(`Part B: ${decompB}`)
 
 function firstDecomp(str){
     let startPos = 0
     let strlength = 0
     do{
         let remdata = str.substring(startPos)
-        let data = remdata.match(/(?<comp>\((?<chars>\d+)x(?<reps>\d+)\))/)
+        let data = remdata.match(algSrch)
         if(data == null){ strlength += remdata.length; break}
         if(data.index > 0){strlength += data.index}
-        strlength += data.groups.chars * data.groups.reps
-        startPos += +data.groups.chars + +data.groups.comp.length + data.index
+        strlength += +data[1] * +data[2]
+        startPos += +data[1] + +data[0].length + data.index
     }while(str[startPos] != undefined)
     return strlength
 }
@@ -25,13 +24,13 @@ function fullDecomp (str){
     let startPos = 0
     do{
         let remdata = str.substring(startPos)
-        let data = remdata.match(/(?<comp>\((?<chars>\d+)x(?<reps>\d+)\))/)
+        let data = remdata.match(algSrch)
         if(data == null){strlength += remdata.length; break}
         if(data.index > 0){strlength += data.index}
-        let substring = data.input.slice(data.index + data.groups.comp.length, +data.groups.chars + +data.groups.comp.length + +data.index)
-        if(substring.match(/(?<comp>\((?<chars>\d+)x(?<reps>\d+)\))/)==null){strlength += data.groups.chars * data.groups.reps}
-        else{strlength += fullDecomp(substring) * data.groups.reps}
-        startPos += +data.groups.chars + +data.groups.comp.length + data.index
+        let substring = data.input.slice(data.index + data[0].length, +data[1] + +data[0].length + +data.index)
+        if(substring.match(algSrch)==null){strlength += +data[1] * +data[2]}
+        else{strlength += fullDecomp(substring) * data[2]}
+        startPos += +data[1] + +data[0].length + data.index
     }while(str[startPos] != undefined)
     return strlength
 }
