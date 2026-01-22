@@ -6,12 +6,11 @@ class Disc{
         this.id = id
         this.size = size
         this.initpos = initpos
-        this.curpos = initpos
     }
 
     getPos(time){
-        this.curpos = (time + this.initpos)%this.size
-        return this.curpos
+        this.pos = (time + this.initpos)%this.size
+        return this.pos
     }
 }
 
