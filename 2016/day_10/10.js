@@ -9,9 +9,7 @@ class Bot{
         this.low = undefined
     }
     give(val){
-        if(this.holding.length<2){
-            this.holding.push(val)
-        }
+        this.holding.push(val)
         if(this.holding.length == 2){
             if(this.holding.includes(61) && this.holding.includes(17)){console.log(`Part A: ${this.id}`)}
             this.high.give(Math.max(this.holding[0],this.holding[1]))
