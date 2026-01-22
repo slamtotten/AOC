@@ -1,7 +1,7 @@
 import input from '../../input.js'
 
 let partA = 272
-let PartB = 35651584
+let partB = 35651584
 let disksize = partA
 
 let a = input
