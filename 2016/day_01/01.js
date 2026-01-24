@@ -21,7 +21,7 @@ for(let move of seq){
 
 console.log(`Part A: ${Math.abs(x) + Math.abs(y)}`)
 let b = revisit.shift()
-console.log(`Part B: ${b}, ${Math.abs(b[0])+Math.abs(b[1])}`)
+console.log(`Part B: ${Math.abs(b[0])+Math.abs(b[1])}`)
 
 function turn(cdir, turn){
     if(turn == "L"){cdir--}
