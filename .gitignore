@@ -1,9 +1,7 @@
 **/node_modules/
 package-lock.json
 package.json
-**/input.txt
-**/test.txt
-**/testb.txt
+**/*.txt
 input.js
 2025/day_09/*
 reference
