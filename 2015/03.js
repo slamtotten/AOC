@@ -1,6 +1,5 @@
 import sequence from "../input.js"
 
-//Part A
 var loc = [0,0]
 var loclog = []
 
